@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF8">
+		<title>D3: A starting point for interactivity</title>
+		<!-- <script type="text/javascript" src="d3/d3.js"></script> -->
+		<script type="text/javascript" src="d3/d3.js"></script>
+		<style>
+
+		body {
+		    margin: 0;
+		    font-family: 'Assistant', sans-serif;
+		}
+
+		h1 {
+    font-weight: 600;
+    color: black;
+		}
+
+		h2 {
+		    font-size: 24px;
+		    font-weight: 700;
+		    margin-bottom: 1%;
+		    margin-top: 0;
+		}
+
+		h3 {
+
+		    font-weight: 400;
+		}
+		p{
+
+			font-size: 11px;
+		}
+
+			* {
+			box-sizing: border-box;
+			}
+
+			/* Create two equal columns that floats next to each other */
+			.column {
+			float: left;
+			width: 50%;
+			padding: 10px;
+			}
+
+			/* Clear floats after the columns */
+			.row:after {
+			content: "";
+			display: table;
+			clear: both;
+			}
+			/*Style for the buttons */
+			.button-1 {
+    border: 1px solid #D0D0D0;
+    display: inline-block;
+    padding: 0.6em 1em;
+    margin: 2% 1%;
+    color: black;
+    background-color: white;
+    pointer-events: auto;
+
+    -webkit-transition: background-color 0.5s ease-out;
+    -webkit-transition: border 0.2s ease-out;
+    border-radius: 6px;
+
+  /*  font-size: 0.8em;*/
+    /*white-space:nowrap;*/
+		}
+		</style>
+	</head>
+	<body>
+		<div class="row">
+  	<div class="column" style="background-color:#D1EBF7;">
+			<h3>Chance Events</h3>
+		<p> Randomness is all around us. Probability theory is the mathematical framework that allows us to analyze chance events in a logically sound manner. The probability of an event is a number indicating how likely that event will occur. This number is always between 0 and 1, where 0 indicates impossibility and 1 indicates certainty.
+
+A classic example of a probabilistic experiment is a fair die thrown, in which the six possible outcomes are values 1 to 6. In this case, the probability of each outcome is 1/6. In an actual series , we may get more or less than exactly 16.6% each outcome. But as the number of throws increases, the long-run frequency of each outcome is bound to get closer and closer to 1/6. </p>
+		<button type="button" id="button" class="button-1">Throw it once</button>
+		<button type="button" id="button100" class="button-1">Throw it 100 times</button>
+		<p>As many times as you want:</p>
+		<form id="form" onsubmit="return false;">
+		    <input type="text" id="userInput" />
+		    <input type="submit" id="buttonX" class="button-1"/>
+		</form>
+		<button type="button" id="buttonReset" class="button-1">Reset</button>
+
+
+		</svg>
+		</div>
+		<div id="chart" class="column" style="background-color:white;">
+		<p> This are the results of the throws:</p>
+
+		<img id="last_realization" src="https://cdn2.iconfinder.com/data/icons/dice-roll/100/dice_1-512.png" width="40px" height="40px">
+		<p id="placeholder"> The last number is
+    </p>
+		<p id ="counter">Number of realizations </p>
+		<!-- Design for the dice -->
+		<svg width="500" height="50">
+			<rect id="die1" x="16" y="10" width="30" height="30" style="fill:rgb(255,255,255);stroke-width:2;stroke:rgb(0,0,0)" />
+			<rect id="die2" x="83" y="10" width="30" height="30" style="fill:rgb(255,255,255);stroke-width:2;stroke:rgb(0,0,0)" />
+			<rect id="die3" x="150" y="10" width="30" height="30" style="fill:rgb(255,255,255);stroke-width:2;stroke:rgb(0,0,0)" />
+			<rect id="die4" x="216" y="10" width="30" height="30" style="fill:rgb(255,255,255);stroke-width:2;stroke:rgb(0,0,0)" />
+			<rect id="die5" x="283" y="10" width="30" height="30" style="fill:rgb(255,255,255);stroke-width:2;stroke:rgb(0,0,0)" />
+			<rect id="die6" x="350" y="10" width="30" height="30" style="fill:rgb(255,255,255);stroke-width:2;stroke:rgb(0,0,0)" />
+			<circle cx="31.5" cy="25" r="2.5" style="fill:black;"></circle>
+			<circle cx="104.5" cy="18" r="2.5" style="fill:black;"></circle>
+			<circle cx="92.5" cy="32" r="2.5" style="fill:black;"></circle>
+			<circle cx="164.7" cy="25" r="2.5" style="fill:black;"></circle>
+			<circle cx="158" cy="32" r="2.5" style="fill:black;"></circle>
+			<circle cx="171.4" cy="18" r="2.5" style="fill:black;"></circle>
+			<circle cx="237.5" cy="18" r="2.5" style="fill:black;"></circle>
+			<circle cx="225" cy="18" r="2.5" style="fill:black;"></circle>
+			<circle cx="237.5" cy="32" r="2.5" style="fill:black;"></circle>
+			<circle cx="225" cy="32" r="2.5" style="fill:black;"></circle>
+			<circle cx="298" cy="25" r="2.5" style="fill:black;"></circle>
+			<circle cx="305.5" cy="18" r="2.5" style="fill:black;"></circle>
+			<circle cx="290.5" cy="18" r="2.5" style="fill:black;"></circle>
+			<circle cx="305.5" cy="32" r="2.5" style="fill:black;"></circle>
+			<circle cx="290.5" cy="32" r="2.5" style="fill:black;"></circle>
+			<circle cx="372" cy="18" r="2.5" style="fill:black;"></circle>
+			<circle cx="372" cy="25" r="2.5" style="fill:black;"></circle>
+			<circle cx="372" cy="32" r="2.5" style="fill:black;"></circle>
+			<circle cx="358" cy="18" r="2.5" style="fill:black;"></circle>
+			<circle cx="358" cy="25" r="2.5" style="fill:black;"></circle>
+			<circle cx="358" cy="32" r="2.5" style="fill:black;"></circle>
+
+		</svg>
+
+	</div>
+	</div>
+
+
+		<script type="text/javascript">
+
+			var w = 400;
+			var h = 200;
+
+			//Sum all the values in the array
+			arrSum = function(arr){
+				return arr.reduce(function(a,b){
+					return a + b
+				}, 0);
+			}
+
+
+			var dataset = [0,0,0,0,0,1];
+
+
+
+
+			var total =  arrSum(dataset);
+
+		  //dice
+			var dice = {
+		  roll: function () {
+			var randomNumber = Math.floor(Math.random() * 6) + 1;
+			return randomNumber;
+	   		}
+	    }
+
+			var xScale = d3.scaleBand()
+							.domain(d3.range(0, dataset.length))
+							.range([0, w])
+							.paddingInner(0.05);
+
+			var yScale = d3.scaleLinear()
+							.domain([0, d3.max(dataset)])
+							.range([0, h]);
+
+							//Create SVG element
+							var svg = d3.select("#chart")
+										.append("svg")
+										.attr("width", w)
+										.attr("height", h);
+
+							//Create bars
+							svg.selectAll("rect")
+							   .data(dataset)
+							   .enter()
+							   .append("rect")
+							   .attr("x", function(d, i) {
+							   		return xScale(i);
+							   })
+							   .attr("y", function(d) {
+							   		return h - d/total*200;
+							   })
+							   .attr("width", xScale.bandwidth())
+							   .attr("height", function(d) {
+							   		return d/total*200;
+							   })
+							   .attr("fill", "#D1EBF7")
+
+
+
+
+		//Create labels
+
+						svg.selectAll("text")
+					 			   .data(dataset)
+					 			   .enter()
+					 			   .append("text")
+					 			   .text(function(d) {
+					 			   		return Math.round(d/total*100)/100;
+					 			   })
+					 			   .attr("text-anchor", "middle")
+					 			   .attr("x", function(d, i) {
+					 			   		return xScale(i) + xScale.bandwidth() / 2;
+					 			   })
+					 			   .attr("y", function(d) {
+					 			   		return h - yScale(d) + 14;
+					 			   })
+					 			   .attr("font-family", "sans-serif")
+					 			   .attr("font-size", "11px")
+					 			   .attr("fill", "black");
+
+			//Prints dice roll to the page
+
+			function printNumber(number) {
+			  var placeholder = document.getElementById('placeholder');
+			  placeholder.innerHTML = "The last number is " + number;
+			}
+			//Prints counter to the page
+			function printCounter(i) {
+				var counter2 = document.getElementById('counter');
+				counter2.innerHTML = "Number of realizations " + i;
+			}
+
+			//Update image of last roll
+			function update_image(realization){
+				if(realization==1){
+					document.getElementById("last_realization").src = "https://cdn2.iconfinder.com/data/icons/dice-roll/100/dice_1-512.png"
+					document.getElementById("die1").setAttribute("style",'fill: orange;stroke-width:2;stroke:rgb(0,0,0)');
+					document.getElementById("die2").setAttribute("style",'fill:white;stroke-width:2;stroke:rgb(0,0,0)');
+					document.getElementById("die3").setAttribute("style",'fill:white;stroke-width:2;stroke:rgb(0,0,0)');
+					document.getElementById("die4").setAttribute("style",'fill:white;stroke-width:2;stroke:rgb(0,0,0)');
+					document.getElementById("die5").setAttribute("style",'fill:white;stroke-width:2;stroke:rgb(0,0,0)');
+					document.getElementById("die6").setAttribute("style",'fill:white;stroke-width:2;stroke:rgb(0,0,0)');
+				}
+				else if(realization==2){
+					document.getElementById("last_realization").src = "https://cdn2.iconfinder.com/data/icons/dice-roll/100/dice_2-512.png"
+					document.getElementById("die1").setAttribute("style",'fill:white;stroke-width:2;stroke:rgb(0,0,0)');
+					document.getElementById("die2").setAttribute("style",'fill: orange;stroke-width:2;stroke:rgb(0,0,0)');
+					document.getElementById("die3").setAttribute("style",'fill:white;stroke-width:2;stroke:rgb(0,0,0)');
+					document.getElementById("die4").setAttribute("style",'fill:white;stroke-width:2;stroke:rgb(0,0,0)');
+					document.getElementById("die5").setAttribute("style",'fill:white;stroke-width:2;stroke:rgb(0,0,0)');
+					document.getElementById("die6").setAttribute("style",'fill:white;stroke-width:2;stroke:rgb(0,0,0)');
+				}
+				else if(realization==3){
+					document.getElementById("last_realization").src = "https://cdn2.iconfinder.com/data/icons/dice-roll/100/dice_3-512.png"
+					document.getElementById("die1").setAttribute("style",'fill:white;stroke-width:2;stroke:rgb(0,0,0)');
+					document.getElementById("die2").setAttribute("style",'fill:white;stroke-width:2;stroke:rgb(0,0,0)');
+					document.getElementById("die3").setAttribute("style",'fill: orange;stroke-width:2;stroke:rgb(0,0,0)');
+					document.getElementById("die4").setAttribute("style",'fill:white;stroke-width:2;stroke:rgb(0,0,0)');
+					document.getElementById("die5").setAttribute("style",'fill:white;stroke-width:2;stroke:rgb(0,0,0)');
+					document.getElementById("die6").setAttribute("style",'fill:white;stroke-width:2;stroke:rgb(0,0,0)');
+				}
+				else if(realization==4){
+					document.getElementById("last_realization").src = "https://cdn2.iconfinder.com/data/icons/dice-roll/100/dice_4-512.png"
+					document.getElementById("die1").setAttribute("style",'fill:white;stroke-width:2;stroke:rgb(0,0,0)');
+					document.getElementById("die2").setAttribute("style",'fill:white;stroke-width:2;stroke:rgb(0,0,0)');
+					document.getElementById("die3").setAttribute("style",'fill:white;stroke-width:2;stroke:rgb(0,0,0)');
+					document.getElementById("die4").setAttribute("style",'fill: orange;stroke-width:2;stroke:rgb(0,0,0)');
+					document.getElementById("die5").setAttribute("style",'fill:white;stroke-width:2;stroke:rgb(0,0,0)');
+					document.getElementById("die6").setAttribute("style",'fill:white;stroke-width:2;stroke:rgb(0,0,0)');
+				}
+				else if(realization==5){
+					document.getElementById("last_realization").src = "https://cdn2.iconfinder.com/data/icons/dice-roll/100/dice_5-512.png"
+					document.getElementById("die1").setAttribute("style",'fill:white;stroke-width:2;stroke:rgb(0,0,0)');
+					document.getElementById("die2").setAttribute("style",'fill:white;stroke-width:2;stroke:rgb(0,0,0)');
+					document.getElementById("die3").setAttribute("style",'fill:white;stroke-width:2;stroke:rgb(0,0,0)');
+					document.getElementById("die4").setAttribute("style",'fill:white;stroke-width:2;stroke:rgb(0,0,0)');
+					document.getElementById("die5").setAttribute("style",'fill: orange;stroke-width:2;stroke:rgb(0,0,0)');
+					document.getElementById("die6").setAttribute("style",'fill:white;stroke-width:2;stroke:rgb(0,0,0)');
+				}
+				else{
+					document.getElementById("last_realization").src = "https://cdn2.iconfinder.com/data/icons/dice-roll/100/dice_6-512.png"
+					document.getElementById("die1").setAttribute("style",'fill:white;stroke-width:2;stroke:rgb(0,0,0)');
+					document.getElementById("die2").setAttribute("style",'fill:white;stroke-width:2;stroke:rgb(0,0,0)');
+					document.getElementById("die3").setAttribute("style",'fill:white;stroke-width:2;stroke:rgb(0,0,0)');
+					document.getElementById("die4").setAttribute("style",'fill:white;stroke-width:2;stroke:rgb(0,0,0)');
+					document.getElementById("die5").setAttribute("style",'fill:white;stroke-width:2;stroke:rgb(0,0,0)');
+					document.getElementById("die6").setAttribute("style",'fill: orange;stroke-width:2;stroke:rgb(0,0,0)');
+				}
+			}
+			//Define buttons and actions
+			var button = document.getElementById('button');
+
+			button.onclick = function() {
+				i=1
+			  var result = dice.roll();
+			  printNumber(result);
+				update_dataset(result);
+				update_chart();
+				printCounter(arrSum(dataset));
+				update_image(result);
+			};
+
+			var button100 = document.getElementById('button100');
+
+			button100.onclick = function() {
+				i=0;
+				while (i < 100){
+				var result = dice.roll();
+				printNumber(result);
+				update_dataset(result);
+				update_chart();
+				update_image(result);
+				i+=1;
+			}
+			printCounter(arrSum(dataset));
+			};
+
+
+			var buttonX = document.getElementById('buttonX');
+
+			buttonX.onclick = function() {
+				var input = document.getElementById("userInput").value;
+				alert("Do you want to throw it " + input + " times?");
+				i=0;
+				while (i < input){
+				var result = dice.roll();
+				printNumber(result);
+				update_dataset(result);
+				update_chart();
+				update_image(result);
+				i+=1;
+			}
+			printCounter(arrSum(dataset));
+			};
+
+			var buttonReset = document.getElementById('buttonReset');
+
+			buttonReset.onclick = function() {
+				dataset = [0,0,0,0,0,1]
+				update_chart();
+				printCounter(1);
+			};
+
+			//function to update dataset according to last roll
+			function update_dataset(throws){
+				var newNumber = new Number(dataset[throws-1]);
+				newNumber += 1;
+				dataset[throws-1] = newNumber;
+			}
+			//function to update charts according to last roll
+			function update_chart(){
+				var total =  arrSum(dataset);
+				//Recalibrate the scale domain, given the new max value in dataset
+
+				//Update all rects
+				svg.selectAll("rect")
+					 .data(dataset)
+					 .transition()
+					 .duration(500)
+					 .ease(d3.easeExp)
+					 .attr("y", function(d) {
+							return h-d/arrSum(dataset)*200;
+					 })
+					 .attr("height", function(d) {
+							return d/arrSum(dataset)*200;
+					 })
+
+
+
+
+			//Update all labels
+			svg.selectAll("text")
+				 .data(dataset)
+				 .transition()
+				 .duration(500)
+				 // easeElastic, easeBounce, easeLinear, easeSin, easeQuad, easeCubic, easePoly, easeCircle, easeExp, easeBack
+				 .ease(d3.easeExp)
+				 .text(function(d) {
+						return Math.round(d/total*100)/100;
+				 })
+				 .attr("x", function(d, i) {
+						return xScale(i) + xScale.bandwidth() / 2;
+				 })
+				 .attr("y", function(d) {
+						return h - d/arrSum(dataset)*200 + 14;
+				 });
+			 }
+			 //Graph static
+			 svg.append("line")
+			 .attr("x1", 0)
+			 .attr("x2", 400)
+			 .attr("y1", 166)
+			 .attr("y2", 166)
+			 .attr("stroke", "red")
+			 svg.append("line")
+			 .attr("x1", 0)
+			 .attr("x2", 0)
+			 .attr("y1", 0)
+			 .attr("y2", 200)
+			 .attr("stroke", "black")
+			 svg.append("line")
+			 .attr("x1", 0)
+			 .attr("x2", 10)
+			 .attr("y1", 0)
+			 .attr("y2", 0)
+			 .attr("stroke", "black")
+			 svg.append("line")
+			 .attr("x1", 0)
+			 .attr("x2", 10)
+			 .attr("y1", 200)
+			 .attr("y2", 200)
+			 .attr("stroke", "black")
+			 svg.append("line")
+			 .attr("x1", 0)
+			 .attr("x2", 10)
+			 .attr("y1", 100)
+			 .attr("y2", 100)
+			 .attr("stroke", "black")
+
+			 svg.append("text")
+			 .text("Expected value = 1/6")
+			 .attr("text-anchor", "middle")
+			 .attr("x", 340)
+			 .attr("y", 160)
+			 .attr("font-family", "sans-serif")
+			 .attr("font-size", "11px")
+			 .attr("fill", "red");
+			 svg.append("text")
+			 .text("100%")
+			 .attr("text-anchor", "middle")
+			 .attr("x", 15)
+			 .attr("y", 10)
+			 .attr("font-family", "sans-serif")
+			 .attr("font-size", "11px")
+			 .attr("fill", "black");
+			 svg.append("text")
+			.text("0%")
+			.attr("text-anchor", "middle")
+			.attr("x", 10)
+			.attr("y", 197)
+			.attr("font-family", "sans-serif")
+			.attr("font-size", "11px")
+			.attr("fill", "black");
+			svg.append("text")
+		 .text("50%")
+		 .attr("text-anchor", "middle")
+		 .attr("x", 22)
+		 .attr("y", 100)
+		 .attr("font-family", "sans-serif")
+		 .attr("font-size", "11px")
+		 .attr("fill", "black");
+
+	</script>
+
+</body>
+</html>
