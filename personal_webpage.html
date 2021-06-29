@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html>
+	<body>
+		<head>
+
+			<style>
+			/*Set general background*/
+				html { 
+					  background-color: #F8F9F9    ; 
+					  background-size: cover
+					}
+			</style>
+
+			<!-- Set square details for hobbies -->
+
+			<style>
+			.hobbies {
+			  
+					border:4px solid #138D75;
+					color: #000000;
+					margin: 20px;
+					padding: 15px;
+					}
+			</style>
+			<!-- Set list characteristics for navigation bar, horizontal-->
+			<style>
+			/*General styling of the navigation bar, color mainly*/
+				ul {
+				  list-style-type: none;
+				  margin: 0;
+				  padding: 0;
+				  overflow: hidden;
+				  background-color: #F8F9F9   ;
+				}
+			/*Put word into the left horizontally, one next to the other*/
+				li {
+				  float: left;
+				}
+			
+				li a {
+				  display: block;
+				  color: black;
+				  text-align: center;
+				  padding: 14px 16px;
+				  text-decoration: none;
+				}
+			/*Color for activated tab*/
+				li a:hover:not(.active) {
+				  background-color: #138D75;
+				}
+
+				.active {
+				  background-color: #138D75;
+				}
+			</style>
+			<!-- Set characteristics for image used in About me section -->
+			<style>
+				.cv_img{
+					float: left; 
+					margin-right: 10px; 
+					margin-left: 10px; 
+					margin-bottom: 10px;
+					margin-top: 10px;
+					}
+			</style>
+			<!-- Style for title of the main sections -->
+			<style>
+				.important{
+					color: black; 
+					font-family: 'Helvetica Neue', sans-serif; 
+					font-size: 50px; 
+					font-weight: bold; 
+					letter-spacing: -1px; 
+					line-height: 1; 
+					text-align: left;
+					margin-left: 5px;
+					margin-top: 20px;
+					}
+			</style>
+			<!-- Style for title of the hobbies sections -->
+			<style>
+				.hobbie_title{
+					color: black; 
+					font-family: 'Helvetica Neue', sans-serif; 
+					font-size: 30px; 
+					font-weight: bold; 
+					letter-spacing: -1px; 
+					line-height: 1; 
+					text-align: left;
+					margin-left: 10px;
+					margin-top: 10px;
+
+					}
+			</style>
+			<!-- stablish the heading of the webpage -->
+			<style>
+			/* Specifies the background  */
+				.hero{
+    				/* Sizing */
+				    width: 100vw;
+				    height: 100vh;
+				    
+				    display: flex;
+				    justify-content: center;
+				    align-items: center;
+				    
+				    /* Text styles */
+				    text-align: center;
+
+				    background-color:#138D75;
+				}
+				/* Specifies the main title */
+				.hero h1{
+					color: #111; 
+					font-family: 'Helvetica Neue', sans-serif; 
+					font-size: 100px; 
+					font-weight: bold; 
+					letter-spacing: -1px; 
+					line-height: 1; 
+					text-align: left;
+				}
+				/* Specifies the second title  */
+				.hero h2 { 
+					color: #111; 
+					font-family: 'Open Sans', sans-serif; 
+					font-size: 30px; 
+					font-weight: 300; 
+					line-height: 32px; 
+					margin: 0 0 72px; 
+					text-align: center; }
+				/* Specifies the botton to continue to the content of the page  */
+				.hero .btn {
+				    /* Positioning and sizing */
+				    display: block;
+				    width: 200px;
+				    background-color:black;
+				    
+				    /* Padding and margins */
+				    padding: 1em;
+				    margin-top: 50px;
+				    margin-left: auto;
+				    margin-right: auto;
+				    
+				    /* Text styles */
+				    color: powderblue;
+				    text-decoration: none;
+				    font-size: 1.5em;
+				    
+				    /* Border styles */
+				    border: 3px solid black;
+				    border-radius: 20px;
+				}
+
+			</style>
+			<!-- Set background of the footer, used for contact details -->
+			<style>
+				.footer {
+				   width: 100%;
+				   background-color: #138D75;
+				   color: black;
+				   text-align: center;
+				   padding: 8px;
+				}
+			</style>
+			<!-- Style used for showing images in Photography section -->
+			<style>
+				.dropdown {
+				  position: relative;
+				  display: inline-block;
+				}
+
+				.dropdown-content {
+				  display: none;
+				  position: absolute;
+				  background-color: #f9f9f9;
+				  min-width: 160px;
+				  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+				  z-index: 1;
+				}
+
+				.dropdown:hover .dropdown-content {
+				  display: block;
+				}
+
+				.desc {
+				  padding: 15px;
+				  text-align: center;
+				  color: black;
+				}
+				</style>
+			<!-- Set square box for about me section -->
+			<style>
+				.me {
+				  
+				  border:4px solid #138D75;
+				  color: black;
+				  padding: 2px;
+				  width: 70%;
+				  margin-left: 15%;
+				  margin-right: 15%;
+				}
+			</style>
+			<!-- Enables writing into two columns -->
+			<style>
+
+				* {
+  					box-sizing: border-box;
+				}
+
+				.column {
+				  float: left;
+				  width: 50%;
+				  padding: 5px;
+				}
+
+				/* Clearfix (clear floats) */
+				.row::after {
+				  content: "";
+				  clear: both;
+				  display: table;
+				}
+			</style>
+			<!-- Style for the table used in Education section -->
+			<style>
+				table {
+				  font-family: arial, sans-serif;
+				  border-collapse: collapse;
+				  margin-bottom: 30px;
+				}
+
+				th {
+				  color: white;
+				  border: 1px solid #000000;
+				  background-color: #138D75;
+				  text-align: center;
+				  padding: 8px;
+				}
+
+				tr, td {
+				  border: 1px solid #000000;
+				  background-color: #ffffff;
+				  text-align: justify;
+				  padding: 20px;
+				}
+			</style>
+			<!-- Action to move paragraphs below foto aligned to the left -->
+			<style>
+				.jump{ clear: left; }
+			</style>
+			<!-- Title of section contact details-->
+			<style >
+				.contact_heading{
+					font-weight: bold;
+					font-family: arial, sans-serif;
+					color: white;
+				}
+			</style>
+			<!-- Characteristics of information of contact details-->
+			<style >
+				.contact_paragraph{
+					font-family: arial, sans-serif;
+					color: black;
+ 					margin-left: 25%;
+  					margin-right: 25%;
+				}
+			</style>
+			<!-- Set a new style for lists, used in About me section-->
+			<style>
+				ul.another_style{
+					color: black;
+					list-style-type:circle;
+					margin: 10px;
+				  	padding: 10px;
+				  	overflow: visible;
+				  	list-style-position: inside;
+				}
+				li.another_style{
+					color: black;
+					float: none;
+					margin: 10px;
+				}
+				li a.another_style {
+  					display: inline;
+  					color: black;
+  					text-align: center;
+  					text-decoration: none;
+  					padding: 5px;
+}
+			</style>
+			<!-- Styling of paragraphs-->
+			<style >
+				.about_p{
+					margin-right: 10px; 
+					margin-left: 10px; 
+					margin-bottom: 10px;
+					margin-top: 10px;
+				}
+			</style>
+
+
+
+
+		</head>
+		<!-- Here starts the content of the webpage-->
+		<!-- Typing content of hero/heading page-->
+		<section class="hero">
+			<div class="hero-inner"> 
+				<h1> I am Guillem Sitges</h1>
+				<h2><i> Student at the Barcelona Graduate School of Economics</i></h2>
+				<a href="#navigator" class="btn"> Go ahead! </a>
+
+			</div>
+		</section>
+		<!-- Set navigation tool and reference to sections-->
+		<main>
+
+			<nav id="navigator">
+
+			    <ul>
+			      <li><a href="#AboutMe">About me</a></li>
+			      <li><a href="#Hobbies">Hobbies</a></li>
+			      <li><a href="#Education">Education</a></li>
+			      <li><a href="#Contact">Contact Details</a></li>
+			      <li><a href="GSE_CV.pdf" target="_blank" type="Application/pdf">Click to view CV</a></li>
+			    </ul>
+
+			 </nav>
+		<hr>
+		<!-- Include my description, photo and links of About me section-->
+		<div>
+		 
+		<h1 id="AboutMe"; class="important">About me</h1>
+
+			 <div class = "me">
+			 	<a target="_blank" href="https://i.postimg.cc/Zqpx65gv/foto-cv.jpg">
+			 	<img src="https://i.postimg.cc/Zqpx65gv/foto-cv.jpg" height="200px" border="1px" class="cv_img"> </a>
+			    <p style="color:#138D75; font-size:150%;">Welcome to my personal webpage!</p>
+			    <p class="about_p" align="justify"> I am Guillem Sitges, currently student of the Master Degree in Data Science at <a href="https://www.barcelonagse.eu/">BGSE</a>. My main interests in that field are:</p> 
+			    <ul class="another_style">
+					<li class="another_style"><b>Customer Analytics</b></li>
+					<li class="another_style"><b>Bayesian Inference</b></li>
+					<li class="another_style"><b>Networks</b></li>
+				</ul> 
+				<p class="about_p" align="justify">
+				I hold a bachelor's degree in Economics. My thesis addresses the influence of gender stereotypes on student's career choice and its effect on the labor market, and was supervised by Prof. Paolo Sospiro from the <a href="https://www.unimc.it/it">UNIVERSITÀ DI MACERATA</a>.I also have interests in the field of Psychology. If you want to know more about my academic background go to <a href="#Education">Education</a> section.</p>
+			    <p class="about_p" align="justify">Take a look to this page to know a little bit more about me!</p>
+			    <br>
+			</div>
+		</div>
+
+		<div class="jump">
+		<!-- Start of Hobbies section-->
+		<h1 id="Hobbies"; class="important">Hobbies</h1>
+			<!-- Square for photography-->
+			<div class="hobbies"> 
+				<div>
+					<h2 class="hobbie_title"> Photography</h2>
+				</div>
+				<div>
+					<p>
+					Below you can see some of my work. For further information, visit my <a href="https://www.instagram.com/guillemsip/">Instagram account </a>.</p>
+				</div>
+				<div class="row">
+	  				<div class="column">
+						<div class="dropdown">
+						  <img src="https://i.postimg.cc/tgT4PH4L/DSC08604.jpg" alt="Sunset" style="width:100%" >
+						  <div class="dropdown-content">
+						  <img src="https://i.postimg.cc/tgT4PH4L/DSC08604.jpg" alt="Sunset" style="width:200%" >
+						  <div class="desc">Sunset in Barcelona</div>
+						</div>
+					</div>
+				</div>
+				<!-- Setting two columns for photos-->
+				<div class="row">
+	  				<div class="column">
+						<div class="dropdown">
+						  <img src="https://i.postimg.cc/3JRSPSW3/DSC07784.jpg" alt="River" style="width:100%" >
+						  <div class="dropdown-content">
+						  <img src="https://i.postimg.cc/3JRSPSW3/DSC07784.jpg" alt="River" style="width:200%" >
+						  <div class="desc">River in France</div>
+						  </div>
+						</div>
+					</div>
+				</div>
+				</div>
+
+			</div>
+			<!-- Setting two columns for hobbies motorcycling and basketball-->
+			<div class="row">
+				<div class="column">
+					<!-- Square for Basketball-->
+					<div class="hobbies"> 
+						<div>
+							<h2 class="hobbie_title"> Basketball</h2>
+						</div>
+						<div>
+							<p align="justify">
+							I played basketball for more than ten years in two different clubs:<a href="http://www.uegaudi.com/">Unió Esportiva Gaudí</a> and <a href="http://www.cbpedagogium.com/">Club Bàsquet Pegagogium</a>. There I learned the values of teamwork, commitment and self improvement. I had great times and lifelong friends!  </p>
+						</div>
+						
+					</div>
+				</div>
+				<!-- Square for Motorcycling-->
+				<div class="column">
+					<div class="hobbies"> 
+						<div>
+							<h2 class="hobbie_title"> Motorcycling </h2>
+						</div>
+						<div>
+							<p align="justify">
+							Fan of anything that smells of gasoline, I have grown in a family passionate about motorsports. Since I was a kid, I have gone to grand prixs, driven karts and watched MotoGP and Formula 1 on TV every weekend.</p>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- New section Education-->	
+		<div>
+		 
+		<h1 id="Education"; class="important">Education</h1>
+			<!-- Defining the table of Education-->
+			 <div>
+			 	<table width = 50% align = "center">
+				  <tr>
+				    <th>Institution</th>
+				    <th>Time and Location</th>
+				  </tr>
+				  <!-- It contains two separated rows for time and location-->
+				  <tr>
+				    <td rowspan="2"><p><b>Barcelona Graduate School of Economics</b></p><p>Master Program in Data Science</p>
+					<p>Relevant courses: Statistical Modelling and Inference, Stochastic models and optimization, Machine Learning,Networks I  (Concepts and Algorithms) and II  (Models and Applications).</p>
+					<p>Degree awarded by Universitat Pompeu Fabra and Universitat Autònoma de Barcelona </p></td>
+				    <td>09/2018 – 06/2019</td>
+				  </tr>
+				  <tr>
+				    <td>Barcelona, Spain</td>
+				  </tr>
+				  <tr>
+				    <td rowspan="2"><p><b>Pompeu Fabra University (UPF)</b></p>
+				    <p>Bachelor of Economics. Score 8.99/10 (top 5%).</p>
+					<p>Relevant courses: Dynamic pricing and revenue management, Advanced Macroeconomics I and II, Modern Statistical Computing in R. </p>
+					<p>Topic of the thesis: “Influence of gender stereotypes on career choice (a cross-sectional study on catalan adolescents)”, chosen to be published in the UPF public repository.</p></td>
+				    <td>09/2014 – 06/2018</td>
+				  </tr>
+				  <tr>
+				    <td>Barcelona, Spain</td>
+				  </tr>
+				  <tr>
+				    <td rowspan="2"><p><b>University of Technology in Sydney (UTS)</b></p>
+				    <p>Information Technology major. Score 8.77 out of 10.</p>
+					<p>Relevant courses: Database Principles, Programing Fundamentals, Behavioral Economics. </p>
+					</td>
+				    <td>07/2017 – 12/2017</td>
+				  </tr>
+				  <tr>
+				    <td>Sydney, Australia</td>
+				  </tr>
+				</table>
+			</div>
+		</div>
+		<!-- Define the footer, contact details-->
+		<div>
+			<footer id= "Contact" class="footer">
+				<div>
+					<h3 class="contact_heading">Contact Details</h3>
+					<p class="contact_paragraph"><img src="http://www.transparentpng.com/download/telephone/phone-transparent-images--17.png" alt="Phone" width="15" height="15"><i> +34 666 666 666</i>
+          			<img src="https://png2.kisspng.com/sh/278e1ecd60a0cf2408eb1c514ec50b8c/L0KzQYm3VsEzN6ltkZH0aYP2gLBuTf1icZ0yfdDBZXzygLa0kBltcJD6feZ9ZT24coLthcFmO2ZoS6g8Nj61R4K3UcI2QGI6SqoDMUazSYq6V8c4NqFzf3==/kisspng-mail-envelope-silhouette-5b1fe1e35c3636.2710125815288160993777.png" alt="Mail" width="15" height="15" ><a href="mailto:mr.potato@gmail.com"> Contact me</a>
+          			<img src="https://cdn2.iconfinder.com/data/icons/national-and-politican-pointers-of-countries/154/country-pointer-geo-location-japan-512.png" alt="Pointer" width="15" height="15"> Pompeu Fabra University, Barcelona</p>
+				</div>
+			</footer>
+		</div>
+	</main>
+	</body>
+</html>
